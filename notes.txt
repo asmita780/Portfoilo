@@ -1,0 +1,60 @@
+Locate the ZIP: Usually, your browser saves it in the ~/Downloads folder.
+
+Extract it: Right-click the file and select Extract Here, or use the terminal:
+
+
+Open in VS Code:
+
+Open VS Code.
+
+Go to File > Open Folder.
+
+Select the extracted folder (my-portfolio).
+
+You should now see your index.html, style.css, and script.js in the left sidebar.
+
+
+
+2. Connect to GitHub (The Professional Link)
+
+Create the Repo
+Do not check "Initialize with a README."
+
+
+Initialize Git in VS Code:
+
+    In VS Code, press Ctrl + `  to open the terminal.
+
+    Run these commands one by one:
+
+    git init
+    git add .
+    git commit -m "Initial commit from AI Studio"
+    git branch -M main
+
+
+Push to GitHub: Copy the git remote add... command from your GitHub page (it looks like this) and paste it:
+
+Netfily..............................
+Connect GitHub to Netlify
+This is where the magic happens. Once connected, Netlify will "watch" your GitHub.
+
+Log in to Netlify: Go to app.netlify.com.
+
+Add New Site: Click Add new site > Import an existing project.
+
+Select GitHub: Connect your GitHub account and find the my-portfolio repository.
+
+Deploy: Leave the "Build settings" empty (since this is plain HTML/JS) and click Deploy my-portfolio.
+
+
+4. How to Update Tomorrow
+
+Get New Code: Copy the new changes from Google AI Studio and paste them into your files in VS Code.
+
+Save to GitHub: In your VS Code terminal, type:
+
+    Bash
+    git add .
+    git commit -m "Updated the project section"
+    git push
