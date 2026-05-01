@@ -3,7 +3,7 @@ import { Github, Linkedin, Twitter, Instagram, Send } from "lucide-react";
 
 export const Contact = () => {
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 max-w-3xl mx-auto text-center">
+    <section id="contact" className="py-32 px-6 md:px-12 max-w-4xl mx-auto text-center">
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -28,25 +28,76 @@ export const Contact = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="text-slate text-lg mb-12 leading-relaxed"
+        className="text-slate text-lg mb-12 max-w-2xl mx-auto leading-relaxed"
       >
         Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
       </motion.p>
       
-      <motion.div
+      <motion.form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
+        className="max-w-2xl mx-auto text-left space-y-6"
       >
-        <a
-          href="mailto:ravinasingh697@gmail.com"
-          className="inline-flex items-center space-x-2 px-10 py-5 border-2 border-green text-green font-mono rounded hover:bg-green/10 transition-all duration-300 text-lg group"
-        >
-          <span>Say Hello</span>
-          <Send size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-        </a>
-      </motion.div>
+        <input type="hidden" name="form-name" value="contact" />
+        <p className="hidden">
+          <label>
+            Don't fill this out if you're human: <input name="bot-field" />
+          </label>
+        </p>
+        
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label htmlFor="name" className="text-lightest-slate font-mono text-sm ml-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              className="w-full bg-light-navy border border-lightest-navy rounded px-4 py-3 text-slate focus:outline-none focus:border-green transition-colors"
+              placeholder="Your Name"
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-lightest-slate font-mono text-sm ml-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              className="w-full bg-light-navy border border-lightest-navy rounded px-4 py-3 text-slate focus:outline-none focus:border-green transition-colors"
+              placeholder="email@example.com"
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="message" className="text-lightest-slate font-mono text-sm ml-1">Message</label>
+          <textarea
+            name="message"
+            id="message"
+            required
+            rows={5}
+            className="w-full bg-light-navy border border-lightest-navy rounded px-4 py-3 text-slate focus:outline-none focus:border-green transition-colors resize-none"
+            placeholder="Tell me about your project..."
+          />
+        </div>
+
+        <div className="text-center pt-4">
+          <button
+            type="submit"
+            className="inline-flex items-center space-x-2 px-12 py-4 border-2 border-green text-green font-mono rounded hover:bg-green/10 transition-all duration-300 text-lg group cursor-pointer"
+          >
+            <span>Say Hello</span>
+            <Send size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </button>
+        </div>
+      </motion.form>
     </section>
   );
 };
