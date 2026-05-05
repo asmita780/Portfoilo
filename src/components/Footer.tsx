@@ -1,137 +1,120 @@
-import { motion } from "motion/react";
-import { Github, Linkedin, Twitter, Instagram, Send } from "lucide-react";
+import React from 'react';
+import { motion } from 'motion/react';
+import { Linkedin, Github, Instagram, Mail, Twitter, MessageSquare } from 'lucide-react';
+import { Socials } from '../types';
 
-export const Contact = () => {
-  return (
-    <section id="contact" className="py-32 px-6 md:px-12 max-w-4xl mx-auto text-center">
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-green font-mono mb-4"
-      >
-        What’s Next?
-      </motion.p>
-      
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.1 }}
-        className="text-4xl md:text-5xl font-bold text-lightest-slate mb-6"
-      >
-        Get In Touch
-      </motion.h2>
-      
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-        className="text-slate text-lg mb-12 max-w-2xl mx-auto leading-relaxed"
-      >
-        Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
-      </motion.p>
-      
-      <motion.form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-        className="max-w-2xl mx-auto text-left space-y-6"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <p className="hidden">
-          <label>
-            Don't fill this out if you're human: <input name="bot-field" />
-          </label>
-        </p>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label htmlFor="name" className="text-lightest-slate font-mono text-sm ml-1">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              required
-              className="w-full bg-light-navy border border-lightest-navy rounded px-4 py-3 text-slate focus:outline-none focus:border-green transition-colors"
-              placeholder="Your Name"
-            />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-lightest-slate font-mono text-sm ml-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              className="w-full bg-light-navy border border-lightest-navy rounded px-4 py-3 text-slate focus:outline-none focus:border-green transition-colors"
-              placeholder="email@example.com"
-            />
-          </div>
-        </div>
+export default function Footer({ socials }: { socials?: Socials }) {
+  if (!socials) return null;
 
-        <div className="space-y-2">
-          <label htmlFor="message" className="text-lightest-slate font-mono text-sm ml-1">Message</label>
-          <textarea
-            name="message"
-            id="message"
-            required
-            rows={5}
-            className="w-full bg-light-navy border border-lightest-navy rounded px-4 py-3 text-slate focus:outline-none focus:border-green transition-colors resize-none"
-            placeholder="Tell me about your project..."
-          />
-        </div>
+  const row1 = [
+    { icon: Linkedin, href: socials.linkedin, name: 'LinkedIn', color: 'bg-[#0077B5]' },
+    { icon: MessageSquare, href: socials.discord, name: 'Discord', color: 'bg-[#5865F2]' },
+    { icon: Github, href: socials.github, name: 'GitHub', color: 'bg-[#000000]' },
+  ];
 
-        <div className="text-center pt-4">
-          <button
-            type="submit"
-            className="inline-flex items-center space-x-2 px-12 py-4 border-2 border-green text-green font-mono rounded hover:bg-green/10 transition-all duration-300 text-lg group cursor-pointer"
-          >
-            <span>Say Hello</span>
-            <Send size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </button>
-        </div>
-      </motion.form>
-    </section>
-  );
-};
-
-export const Footer = () => {
-  const socialLinks = [
-    { icon: <Github size={20} />, href: "#", name: "GitHub" },
-    { icon: <Linkedin size={20} />, href: "https://linkedin.com/in/ravina-kumari-76279616a", name: "LinkedIn" },
-    { icon: <Twitter size={20} />, href: "#", name: "Twitter" },
-    { icon: <Instagram size={20} />, href: "#", name: "Instagram" },
+  const row2 = [
+    { icon: Instagram, href: socials.instagram, name: 'Instagram', color: 'bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]' },
+    { icon: Mail, href: `mailto:${socials.email}`, name: 'Email', color: 'bg-[#EA4335]' },
+    { icon: Twitter, href: socials.twitter, name: 'Twitter', color: 'bg-[#1DA1F2]' },
   ];
 
   return (
-    <footer className="py-8 text-center px-6">
-      <div className="flex justify-center space-x-6 mb-6">
-        {socialLinks.map(social => (
-          <a
-            key={social.name}
-            href={social.href}
-            className="text-slate hover:text-green transition-all duration-300 hover:-translate-y-1"
-            aria-label={social.name}
-          >
-            {social.icon}
-          </a>
-        ))}
+    <footer id="contact" className="bg-brand-bg">
+      {/* 1. Hero Image Header */}
+      <div className="max-w-[1920px] mx-auto px-0 md:px-[70px] pt-12">
+        <div className="aspect-[3/1] w-full rounded-[40px] overflow-hidden shadow-2xl relative">
+          <img 
+            src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&q=80&w=1200" 
+            alt="Cinematic Landscape Sunset"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
-      <div className="font-mono text-sm text-slate space-y-2">
-        <p className="hover:text-green transition-colors">
-          Built by Ravina Kumari
-        </p>
-        <p className="opacity-70">
-          Designed with intention & crafted with React
-        </p>
+
+      {/* 2. Content Layout (Brand Background Section) */}
+      <div className="bg-brand-bg mt-[-100px] pt-[180px] pb-32 relative z-0">
+        <div className="max-w-[1920px] mx-auto px-[70px] grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+          
+          {/* Left Column (Text) */}
+          <div className="md:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-brand-orange text-4xl md:text-5xl font-bold leading-tight font-sans">
+                Very Happy to see you down here:)
+              </h2>
+              <p className="text-brand-teal text-xl md:text-2xl leading-relaxed max-w-2xl font-light">
+                Even I'm a little confused in life right now and not working on something big and long-term. 
+                But if you have something to talk about, or something we can work on together --- let's connect, let's talk.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Right Column (Socials) */}
+          <div className="md:col-span-5 flex flex-col items-center md:items-end">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center md:items-start"
+            >
+              <h3 className="text-3xl font-bold mb-16 font-sans">
+                <span className="text-brand-teal">Start By </span>
+                <a 
+                  href={`mailto:${socials.email}`}
+                  className="text-brand-orange border-b-2 border-brand-orange pb-1 hover:opacity-80 transition-opacity cursor-pointer"
+                >
+                  Saying Hi.
+                </a>
+              </h3>
+
+              {/* 3. Social Media Icon Specifications */}
+              <div className="space-y-6">
+                {/* Row 1 */}
+                <div className="flex space-x-6 justify-center md:justify-start">
+                  {row1.map((item, i) => (
+                    <SocialIcon key={i} item={item} />
+                  ))}
+                </div>
+                
+                {/* Row 2 - Staggered to the right */}
+                <div className="flex space-x-6 justify-center md:justify-start md:pl-12">
+                  {row2.map((item, i) => (
+                    <SocialIcon key={i} item={item} />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Traditional Footer Bottom */}
+        <div className="max-w-[1920px] mx-auto px-[70px] mt-32 pt-12 border-t border-brand-teal/10 flex flex-col md:flex-row justify-between items-center text-sm text-brand-teal/40">
+           <p className="font-medium">© {new Date().getFullYear()} Ravina Kumari. All rights reserved.</p>
+           <div className="flex space-x-6 mt-4 md:mt-0 font-medium">
+             <span>Built with Logic & Art</span>
+             <a href="/login" className="hover:text-brand-teal transition-colors underline underline-offset-4">Admin Access</a>
+           </div>
+        </div>
       </div>
     </footer>
   );
-};
+}
+
+function SocialIcon({ item }: { item: any }) {
+  return (
+    <motion.a
+      whileHover={{ y: -8, scale: 1.1, rotate: 2 }}
+      whileTap={{ scale: 0.95 }}
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${item.color} w-16 h-16 rounded-[22px] flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 group`}
+    >
+      <item.icon className="w-8 h-8 group-hover:scale-110 transition-transform" />
+    </motion.a>
+  );
+}

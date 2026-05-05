@@ -58,3 +58,11 @@ Save to GitHub: In your VS Code terminal, type:
     git add .
     git commit -m "Updated the project section"
     git push
+
+
+
+promt
+create a prompt for google ai studio to create portfilio website with same ui i provied to you,
+use the font and color of texts form second image form all pages and use your logical mind to make it fit(remember i want same ui style) 
+and a author dashboard page, which will only be visible to author that page will allow  author to change the images,cv and content without doing coding,
+ any time, promt should focus on the quality of the project mostly, i want super high clean website
